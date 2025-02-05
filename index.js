@@ -80,6 +80,32 @@ function displayWeather(data) {
   resultDiv.innerHTML = cardsHTML;
 }
 
+// Función para crear un gráfico de barras comparando las temperaturas usando Chart.js
+function renderChart(data) {
+  const labels = data.map(cityData => cityData.name); // Nombres de las ciudades
+  const temperatures = data.map(cityData => cityData.main.temp); // Temperaturas
+  
+  chartInstance = new Chart(chartCanvas, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Temperatura (°C)",
+        data: temperatures,
+        backgroundColor: "rgba(75, 192, 192, 0.5)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
 
 // Función para errores
 function showError(message) {
