@@ -21,12 +21,40 @@
   </head>
   <body>
     <div class="container my-5">
+      <!-- Main card: centrada y ancha -->
       <div class="card weather-card p-4">
         <div class="text-center mb-4">
           <h2 class="text-primary">
             <i class="fas fa-cloud-sun"></i> Weather App
           </h2>
           <p>Obtén el clima actual para una o varias ciudades.</p>
+        </div>
+        <!-- Formulario para ingresar ciudades (separadas por comas) -->
+        <form id="weatherForm">
+          <div class="form-group position-relative mb-3">
+            <input
+              type="text"
+              id="cityInput"
+              class="form-control"
+              placeholder="Ingrese ciudades separadas por comas (ej: New York, London, Tokyo)"
+              required
+            />
+            <i
+              class="fas fa-city position-absolute"
+              style="top: 50%; right: 20px; transform: translateY(-50%); color: #888;"
+            ></i>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-search"></i> Obtener Clima
+          </button>
+        </form>
+        <!-- Div para mostrar mensajes de error -->
+        <div id="errorMessage" class="mt-3"></div>
+        <!-- Div para mostrar los resultados del clima -->
+        <div id="weatherResult" class="mt-4 d-flex flex-wrap justify-content-center"></div>
+        <!-- Canvas para el gráfico de comparación de temperaturas -->
+        <div class="mt-4">
+          <canvas id="weatherChart"></canvas>
         </div>
       </div>
     </div>
