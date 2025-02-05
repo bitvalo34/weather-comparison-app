@@ -61,6 +61,26 @@ async function fetchWeatherData(cities) {
   return await Promise.all(requests);
 }
 
+// Función para mostrar los datos del clima en tarjetas de Bootstrap
+function displayWeather(data) {
+  // Mapear cada objeto de datos y crear una tarjeta con la información.
+  const cardsHTML = data.map(cityData => `
+    <div class="weather-col mb-3">
+      <div class="card result-card p-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">${cityData.name}, ${cityData.sys.country} <i class="fas fa-map-marker-alt text-info"></i></h5>
+          <p class="mb-2"><i class="fas fa-temperature-high text-danger"></i> <strong>${cityData.main.temp}°C</strong></p>
+          <p class="mb-2"><i class="fas fa-cloud text-primary"></i> ${cityData.weather[0].description}</p>
+          <p class="mb-0"><i class="fas fa-tint text-info"></i> Humedad: ${cityData.main.humidity}%</p>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  
+  resultDiv.innerHTML = cardsHTML;
+}
+
+
 // Función para errores
 function showError(message) {
   errorDiv.innerHTML = `<div class="alert alert-danger">${message}</div>`;
